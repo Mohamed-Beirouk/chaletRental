@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "959623116610",
+    "project_id": "nadilk",
+    "storage_bucket": "nadilk.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:959623116610:android:16641160661154ab44badb",
+        "android_client_info": {
+          "package_name": "com.example.nudilk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "959623116610-683prgfkeag6deul8pr4p2clj5pggf7m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfPNKs-toRt9zvuACgy1iBjFiin65H0uM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "959623116610-683prgfkeag6deul8pr4p2clj5pggf7m.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "959623116610-2vrjrd3b2sphtdurqf9qdrf8n1gq8rcl.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.nudilk"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

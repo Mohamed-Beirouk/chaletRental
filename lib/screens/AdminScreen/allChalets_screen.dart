@@ -1,0 +1,75 @@
+import 'package:flutter/material.dart';
+import 'package:nudilk/components/homeChaletPackagesWidget.dart';
+import 'package:nudilk/constants.dart';
+import 'package:nudilk/model/Chalets.dart';
+import 'package:nudilk/provider/ChaletsProvider.dart';
+import 'package:nudilk/services/fireStore_helper.dart';
+import 'package:provider/provider.dart';
+
+class AdminChaletsScreen extends StatefulWidget {
+  static const String id = "AdminChalets_screen";
+
+  @override
+  State<AdminChaletsScreen> createState() => _AdminChaletsScreenState();
+}
+
+class _AdminChaletsScreenState extends State<AdminChaletsScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Provider.of<ChaletsProvider>(context, listen: false).getChalets();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    List<Chalets> chaletsList =
+        Provider.of<ChaletsProvider>(context).chalet.toList();
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text('AllChalets'),
+        backgroundColor: kMainAppColor,
+      ),
+      body: chaletsList.isEmpty
+          ? Container(
+              width: double.infinity,
+              child: Center(
+                child: Image.asset('assets/images/emptyBooking.png'),
+              ),
+            )
+          : Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: ListView.builder(
+                itemCount: chaletsList.length,
+                itemBuilder: (context, index) {
+                  return HomeChaletPackagesWidget(
+                    price: chaletsList[index].price,
+                    description: chaletsList[index].description,
+                    imageURL: chaletsList[index].imageURL,
+                    chaletLocation: chaletsList[index].location,
+                    chaletName: chaletsList[index].name,
+                    onpressedB1: () {
+                      FireStoreHelper.fireStoreHelper
+                          .updateChaletsStatus(chaletsList[index], true);
+                    },
+                    onpressedB2: () {
+                      FireStoreHelper.fireStoreHelper
+                          .updateChaletsStatus(chaletsList[index], false);
+                    },
+                    isForBooking: false,
+                    isForAdmin: true,
+                    onpressed: () {},
+                    width: width,
+                    height: height,
+                    fontSize: 10,
+                    buttonString: "Delete Booking",
+                  );
+                },
+              ),
+            ),
+    );
+  }
+}
